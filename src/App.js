@@ -12,10 +12,10 @@ function App() {
         <div className="App">
             <Header />
             <Figure />
-            <Word />
+            {/* <Word />
             <Letters />
             <Notification />
-            <Result />
+            <Result /> */}
         </div>
     );
 }
