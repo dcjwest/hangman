@@ -1,9 +1,15 @@
 import React from 'react';
 
-const Word = () => {
+const Word = ({ word }) => {
     return (
         <>
-            <h1>Word</h1>
+            <p className="word">
+                {word.split('').map((char, i) => (
+                    <span key={i} className="letter">
+                        {char}
+                    </span>
+                ))}
+            </p>
         </>
     );
 };

@@ -9,11 +9,13 @@ import './styles.css';
 
 function App() {
     return (
-        <div className="App">
+        <div className="App container">
             <Header />
-            <Figure />
-            {/* <Word />
-            <Letters />
+            <div className="Visuals flex-center">
+                <Figure />
+                <Word word="hangman" />
+            </div>
+            {/* <Letters />
             <Notification />
             <Result /> */}
         </div>
