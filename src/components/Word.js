@@ -1,15 +1,22 @@
 import React from 'react';
 
-const Word = ({ word }) => {
+const Word = ({ selectedWord, correctChars }) => {
     return (
         <>
-            <p className="word">
-                {word.split('').map((char, i) => (
-                    <span key={i} className="letter">
-                        {char}
-                    </span>
+            <div className="word flex-center">
+                {selectedWord.split('').map((char, i) => (
+                    <div key={i} className="letter">
+                        <span
+                            className={`${
+                                correctChars.includes(char) ? 'show' : ''
+                            }`}
+                        >
+                            {char}
+                        </span>
+                        <div className="underline"></div>
+                    </div>
                 ))}
-            </p>
+            </div>
         </>
     );
 };
