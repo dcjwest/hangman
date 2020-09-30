@@ -7,12 +7,21 @@ import Letters from './components/Letters';
 import Result from './components/Result';
 import './styles.css';
 
-const selectedWord = 'HANGMAN';
+const API_URL = 'https://random-word-api.herokuapp.com/word';
 
 const App = () => {
     const [playable, setPlayable] = useState(true);
+    const [selectedWord, setSelectedWord] = useState('');
     const [correctChars, setCorrectChars] = useState([]);
     const [wrongChars, setWrongChars] = useState([]);
+
+    useEffect(() => {
+        fetch(API_URL)
+            .then(res => res.json())
+            .then(data => {
+                setSelectedWord(data[0].toUpperCase());
+            });
+    }, []);
 
     const handleLetterClick = letter => {
         if (selectedWord.includes(letter)) {
@@ -55,7 +64,7 @@ const App = () => {
         window.addEventListener('keydown', handleKeyDown);
 
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [correctChars, wrongChars, playable]);
+    }, [selectedWord, correctChars, wrongChars, playable]);
 
     return (
         <div className="container">
@@ -75,12 +84,14 @@ const App = () => {
                 </div>
             </div>
             {/* <Notification /> */}
-            <Result
-                selectedWord={selectedWord}
-                wrongChars={wrongChars}
-                correctChars={correctChars}
-                chances={6}
-            />
+            {selectedWord && (
+                <Result
+                    selectedWord={selectedWord}
+                    wrongChars={wrongChars}
+                    correctChars={correctChars}
+                    chances={6}
+                />
+            )}
         </div>
     );
 };

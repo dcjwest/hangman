@@ -1,19 +1,35 @@
 import React, { useEffect } from 'react';
 
 const Result = ({ selectedWord, wrongChars, correctChars, chances }) => {
-    const numUniqueChars = selectedWord
-        .split('')
-        .filter((char, i, arr) => arr.indexOf(char) === i).length;
-
     useEffect(() => {
+        const numUniqueChars = selectedWord
+            .split('')
+            .filter((char, i, arr) => arr.indexOf(char) === i).length;
+
         if (correctChars.length === numUniqueChars) {
-            alert("Congratulations! You've guessed the correct word!");
+            setTimeout(() => {
+                if (
+                    window.confirm(
+                        "Congratulations! You've guessed the correct word!\n\n Play again?"
+                    )
+                ) {
+                    window.location.reload();
+                }
+            }, 1000);
         }
 
-        if (wrongChars.length > chances) {
-            alert("Oh no... You've failed to guess the correct word.");
+        if (wrongChars.length >= chances) {
+            setTimeout(() => {
+                if (
+                    window.confirm(
+                        `Oh no... You've failed to guess the correct word.\nAnswer: ${selectedWord}\n\n Play again?`
+                    )
+                ) {
+                    window.location.reload();
+                }
+            }, 1000);
         }
-    }, [wrongChars, correctChars, numUniqueChars, chances]);
+    }, [selectedWord, wrongChars, correctChars, chances]);
     return <></>;
 };
 
