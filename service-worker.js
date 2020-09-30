@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/hangman/precache-manifest.20e45d938cca8063917365c62c21eabd.js"
+  "/hangman/precache-manifest.8d990b2fe8a7c29d3b662a299760610b.js"
 );
 
 self.addEventListener('message', (event) => {
