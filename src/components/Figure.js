@@ -2,7 +2,6 @@ import React from 'react';
 
 const Figure = ({ wrongChars }) => {
     const errors = wrongChars.length;
-    console.log(errors);
     return (
         <div className="figure">
             <svg

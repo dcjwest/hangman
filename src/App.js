@@ -3,16 +3,32 @@ import Header from './components/Header';
 import Figure from './components/Figure';
 import Word from './components/Word';
 import Letters from './components/Letters';
-import Notification from './components/Notification';
+// import Notification from './components/Notification';
 import Result from './components/Result';
 import './styles.css';
 
 const selectedWord = 'HANGMAN';
 
-function App() {
+const App = () => {
     const [playable, setPlayable] = useState(true);
     const [correctChars, setCorrectChars] = useState([]);
     const [wrongChars, setWrongChars] = useState([]);
+
+    const handleLetterClick = letter => {
+        if (selectedWord.includes(letter)) {
+            if (!correctChars.includes(letter)) {
+                setCorrectChars(prevCorrectChars => {
+                    return [...prevCorrectChars, letter];
+                });
+            }
+        } else {
+            if (!wrongChars.includes(letter)) {
+                setWrongChars(prevWrongChars => {
+                    return [...prevWrongChars, letter];
+                });
+            }
+        }
+    };
 
     useEffect(() => {
         const handleKeyDown = e => {
@@ -22,17 +38,15 @@ function App() {
             if (playable && keyCode >= 65 && keyCode <= 90) {
                 if (selectedWord.includes(char)) {
                     if (!correctChars.includes(char)) {
-                        setCorrectChars(prevCorrectChars => [
-                            ...prevCorrectChars,
-                            char,
-                        ]);
+                        setCorrectChars(prevCorrectChars => {
+                            return [...prevCorrectChars, char];
+                        });
                     }
                 } else {
                     if (!wrongChars.includes(char)) {
-                        setWrongChars(prevWrongChars => [
-                            ...prevWrongChars,
-                            char,
-                        ]);
+                        setWrongChars(prevWrongChars => {
+                            return [...prevWrongChars, char];
+                        });
                     }
                 }
             }
@@ -56,13 +70,19 @@ function App() {
                     <Letters
                         wrongChars={wrongChars}
                         correctChars={correctChars}
+                        handleLetterClick={handleLetterClick}
                     />
                 </div>
             </div>
-            {/* <Notification />
-            <Result /> */}
+            {/* <Notification /> */}
+            <Result
+                selectedWord={selectedWord}
+                wrongChars={wrongChars}
+                correctChars={correctChars}
+                chances={6}
+            />
         </div>
     );
-}
+};
 
 export default App;

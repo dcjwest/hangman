@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Letters = ({ wrongChars, correctChars }) => {
+const Letters = ({ wrongChars, correctChars, handleLetterClick }) => {
     const alphabet = [...Array(26).keys()].map(charNum =>
         String.fromCharCode(charNum + 65)
     );
@@ -17,6 +17,7 @@ const Letters = ({ wrongChars, correctChars }) => {
                             ? 'correct'
                             : ''
                     }`}
+                    onClick={e => handleLetterClick(e.target.innerHTML)}
                 >
                     {char}
                 </div>
