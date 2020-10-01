@@ -32,6 +32,14 @@ body {
       justify-content: space-around;
 }
 
+.App {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 1rem;
+  position: relative;
+}
+
 .header-wrapper {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -48,6 +56,7 @@ body {
     -webkit-box-pack: start;
         -ms-flex-pack: start;
             justify-content: flex-start;
+    position: absolute;
   }
   .header-wrapper p::before {
     border-right: 2px solid #111;
@@ -64,7 +73,21 @@ body {
           flex-direction: column;
 }
 
-@media screen and (min-width: 768px), (max-height: 576px), (orientation: landscape) {
+@media screen and (max-height: 576px) and (orientation: landscape) {
+  .game-wrapper {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  .game-wrapper .word {
+    -ms-flex-item-align: end;
+        align-self: flex-end;
+    margin: 0 2em 1em 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
   .game-wrapper {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -75,7 +98,7 @@ body {
 
 .figure {
   width: 100%;
-  max-width: 80vmin;
+  max-width: 65vmin;
 }
 
 .figure svg {
@@ -98,14 +121,14 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   width: 100%;
-  max-width: 40em;
+  max-width: 35em;
 }
 
 .word {
-  font-size: 1.3em;
-  font-size: clamp(1.3em, 4vw, 2.5em);
+  font-size: 1.2em;
+  font-size: clamp(1.2em, 2vw, 2.5em);
   font-weight: bold;
-  margin-bottom: 2rem;
+  margin: 1em 0 2em;
 }
 
 .word .letter {
@@ -154,8 +177,8 @@ body {
 .input-letter-grid .input-letter {
   cursor: pointer;
   font-size: 2em;
-  font-size: clamp(2em, 4vw, 3em);
-  margin: 2%;
+  font-size: clamp(2em, 3vw, 3em);
+  margin: 1.7%;
   position: relative;
   width: 10%;
 }
@@ -178,5 +201,37 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.notification-wrapper {
+  background-color: #02418c;
+  border-radius: 0.5rem;
+  opacity: 0;
+  padding: 0.5em 1em;
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  -webkit-transform: translate(-50%, 150%);
+          transform: translate(-50%, 150%);
+  width: 100%;
+  max-width: 450px;
+  -webkit-transition: opacity 0.3s linear, -webkit-transform 0.3s ease-in-out;
+  transition: opacity 0.3s linear, -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, opacity 0.3s linear;
+  transition: transform 0.3s ease-in-out, opacity 0.3s linear, -webkit-transform 0.3s ease-in-out;
+}
+
+.notification-wrapper.show {
+  opacity: 1;
+  -webkit-transform: translate(-50%, 0%);
+          transform: translate(-50%, 0%);
+}
+
+.notification-wrapper .notification {
+  color: #fff;
+  font-size: 1em;
+  font-size: clamp(1em, 1.6vw, 2em);
+  letter-spacing: 1px;
+  text-align: center;
 }
 /*# sourceMappingURL=styles.css.map */

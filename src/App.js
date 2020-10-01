@@ -3,17 +3,19 @@ import Header from './components/Header';
 import Figure from './components/Figure';
 import Word from './components/Word';
 import Letters from './components/Letters';
-// import Notification from './components/Notification';
+import Notification from './components/Notification';
 import Result from './components/Result';
+import { showAlert } from './helpers';
 import './styles.css';
 
 const API_URL = 'https://random-word-api.herokuapp.com/word';
 
 const App = () => {
     const [playable, setPlayable] = useState(true);
-    const [selectedWord, setSelectedWord] = useState('');
+    const [selectedWord, setSelectedWord] = useState('HANGMAN');
     const [correctChars, setCorrectChars] = useState([]);
     const [wrongChars, setWrongChars] = useState([]);
+    const [showNotification, setShowNotification] = useState(false);
 
     useEffect(() => {
         fetch(API_URL)
@@ -29,13 +31,13 @@ const App = () => {
                 setCorrectChars(prevCorrectChars => {
                     return [...prevCorrectChars, letter];
                 });
-            }
+            } else showAlert(setShowNotification);
         } else {
             if (!wrongChars.includes(letter)) {
                 setWrongChars(prevWrongChars => {
                     return [...prevWrongChars, letter];
                 });
-            }
+            } else showAlert(setShowNotification);
         }
     };
 
@@ -67,7 +69,7 @@ const App = () => {
     }, [selectedWord, correctChars, wrongChars, playable]);
 
     return (
-        <div className="container">
+        <div className="App container">
             <Header />
             <div className="game-wrapper flex-center">
                 <Figure wrongChars={wrongChars} />
@@ -83,7 +85,7 @@ const App = () => {
                     />
                 </div>
             </div>
-            {/* <Notification /> */}
+            <Notification showNotification={showNotification} />
             {selectedWord && (
                 <Result
                     selectedWord={selectedWord}
