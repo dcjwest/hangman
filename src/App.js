@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import useFetchWord from './useFetchWord';
 import Header from './components/Header';
 import Figure from './components/Figure';
 import Word from './components/Word';
@@ -8,22 +9,18 @@ import Result from './components/Result';
 import { showAlert } from './helpers';
 import './styles.css';
 
-const API_URL = 'https://random-word-api.herokuapp.com/word';
-
 const App = () => {
     const [playable, setPlayable] = useState(true);
-    const [selectedWord, setSelectedWord] = useState('HANGMAN');
+    const { selectedWord } = useFetchWord(playable, setPlayable);
     const [correctChars, setCorrectChars] = useState([]);
     const [wrongChars, setWrongChars] = useState([]);
     const [showNotification, setShowNotification] = useState(false);
 
-    useEffect(() => {
-        fetch(API_URL)
-            .then(res => res.json())
-            .then(data => {
-                setSelectedWord(data[0].toUpperCase());
-            });
-    }, []);
+    const init = () => {
+        setCorrectChars([]);
+        setWrongChars([]);
+        setPlayable(true);
+    };
 
     const handleLetterClick = letter => {
         if (selectedWord.includes(letter)) {
@@ -46,7 +43,7 @@ const App = () => {
             const { key, keyCode } = e;
             const char = key.toUpperCase();
 
-            if (playable && keyCode >= 65 && keyCode <= 90) {
+            if (keyCode >= 65 && keyCode <= 90) {
                 if (selectedWord.includes(char)) {
                     if (!correctChars.includes(char)) {
                         setCorrectChars(prevCorrectChars => {
@@ -66,7 +63,7 @@ const App = () => {
         window.addEventListener('keydown', handleKeyDown);
 
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [selectedWord, correctChars, wrongChars, playable]);
+    }, [selectedWord, correctChars, wrongChars]);
 
     return (
         <div className="App container">
@@ -92,6 +89,7 @@ const App = () => {
                     wrongChars={wrongChars}
                     correctChars={correctChars}
                     chances={6}
+                    init={init}
                 />
             )}
         </div>

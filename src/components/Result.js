@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-const Result = ({ selectedWord, wrongChars, correctChars, chances }) => {
+const Result = ({ selectedWord, wrongChars, correctChars, chances, init }) => {
     useEffect(() => {
         const numUniqueChars = selectedWord
             .split('')
@@ -12,24 +12,22 @@ const Result = ({ selectedWord, wrongChars, correctChars, chances }) => {
                     window.confirm(
                         "Congratulations! You've guessed the correct word!\n\n Play again?"
                     )
-                ) {
-                    window.location.reload();
-                }
+                )
+                    init();
             }, 1000);
         }
 
-        if (wrongChars.length >= chances) {
+        if (wrongChars.length === chances) {
             setTimeout(() => {
                 if (
                     window.confirm(
                         `Oh no... You've failed to guess the correct word.\nAnswer: ${selectedWord}\n\n Play again?`
                     )
-                ) {
-                    window.location.reload();
-                }
+                )
+                    init();
             }, 1000);
         }
-    }, [selectedWord, wrongChars, correctChars, chances]);
+    }, [selectedWord, wrongChars, correctChars, chances, init]);
     return <></>;
 };
 
