@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2ea40db9825d240b94d0aaa2523f9139",
+    "revision": "ad6b9c14878b6dca3c72576775488cd1",
     "url": "/hangman/index.html"
   },
   {
-    "revision": "7f63b9052176d7e1e8eb",
-    "url": "/hangman/static/css/main.724bb77f.chunk.css"
+    "revision": "3f0e4b8e1fd1be768eef",
+    "url": "/hangman/static/css/main.d510d4a5.chunk.css"
   },
   {
     "revision": "6a811885eb33140731bd",
@@ -16,11 +16,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/hangman/static/js/2.f809a647.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7f63b9052176d7e1e8eb",
-    "url": "/hangman/static/js/main.0b0ca49b.chunk.js"
+    "revision": "3f0e4b8e1fd1be768eef",
+    "url": "/hangman/static/js/main.eddaf9df.chunk.js"
   },
   {
     "revision": "7ef95293683d0ed87720",
     "url": "/hangman/static/js/runtime-main.6b115b9b.js"
+  },
+  {
+    "revision": "d4aad45a5520d80638caf6163ce4fc64",
+    "url": "/hangman/static/media/brush-stroke.d4aad45a.png"
   }
 ]);
