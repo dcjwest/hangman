@@ -97,18 +97,27 @@ body {
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) and (min-height: 350px) {
   .game-wrapper {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
   }
+  .game-wrapper .input-letter-grid {
+    margin-top: 2em;
+  }
 }
 
 .figure {
-  width: 100%;
-  max-width: 65vmin;
+  width: 65vmin;
+  max-width: 300px;
+}
+
+@media screen and (min-width: 768px) and (orientation: landscape) {
+  .figure {
+    max-width: 500px;
+  }
 }
 
 .figure svg {
@@ -147,12 +156,14 @@ body {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   color: #fff;
-  font-size: clamp(1.2em, 2vw, 2.5em);
+  font-size: 1.1em;
+  font-size: clamp(1.1em, 1.5vw, 2.2em);
   padding: 0.5em 1em;
   text-align: center;
   text-transform: uppercase;
-  width: 80%;
+  width: 100%;
   max-width: 20rem;
+  min-width: 16rem;
 }
 
 .word {
@@ -208,7 +219,7 @@ body {
   cursor: pointer;
   font-size: 1.9em;
   font-size: clamp(1.9em, 3vw, 3em);
-  margin: 1.5%;
+  margin: 1.6%;
   position: relative;
   width: 10%;
 }

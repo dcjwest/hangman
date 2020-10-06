@@ -49,13 +49,13 @@ const App = () => {
                         setCorrectChars(prevCorrectChars => {
                             return [...prevCorrectChars, char];
                         });
-                    }
+                    } else showAlert(setShowNotification);
                 } else {
                     if (!wrongChars.includes(char)) {
                         setWrongChars(prevWrongChars => {
                             return [...prevWrongChars, char];
                         });
-                    }
+                    } else showAlert(setShowNotification);
                 }
             }
         };
