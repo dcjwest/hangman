@@ -1,8 +1,11 @@
 import React from 'react';
 
-const Word = ({ selectedWord, correctChars }) => {
+const Word = ({ selectedWord, correctChars, numMistakes, chances }) => {
     return (
-        <>
+        <div className="word-wrapper flex-center">
+            <div className="mistakes">
+                {`Mistakes (${numMistakes}/${chances})`}
+            </div>
             <div className="word flex-center">
                 {selectedWord.split('').map((char, i) => (
                     <div key={i} className="letter">
@@ -17,7 +20,7 @@ const Word = ({ selectedWord, correctChars }) => {
                     </div>
                 ))}
             </div>
-        </>
+        </div>
     );
 };
 

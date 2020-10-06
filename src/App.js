@@ -74,6 +74,8 @@ const App = () => {
                     <Word
                         selectedWord={selectedWord}
                         correctChars={correctChars}
+                        numMistakes={wrongChars.length}
+                        chances={6}
                     />
                     <Letters
                         wrongChars={wrongChars}

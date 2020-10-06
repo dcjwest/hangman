@@ -36,8 +36,14 @@ body {
   height: 100vh;
   width: 100%;
   overflow: hidden;
-  padding-top: 1rem;
+  padding-top: 0.5em;
   position: relative;
+}
+
+@media screen and (orientation: portrait) {
+  .App {
+    padding-top: 2em;
+  }
 }
 
 .header-wrapper {
@@ -45,6 +51,10 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.header-wrapper h1 {
+  text-transform: uppercase;
 }
 
 @media screen and (orientation: landscape) and (max-height: 600px) {
@@ -80,7 +90,7 @@ body {
         -ms-flex-direction: row;
             flex-direction: row;
   }
-  .game-wrapper .word {
+  .game-wrapper .word-wrapper {
     -ms-flex-item-align: end;
         align-self: flex-end;
     margin: 0 2em 1em 0;
@@ -124,11 +134,31 @@ body {
   max-width: 35em;
 }
 
+.word-wrapper {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 1em 0 2em;
+}
+
+.mistakes {
+  background: url("./assets/brush-stroke.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: #fff;
+  font-size: clamp(1.2em, 2vw, 2.5em);
+  padding: 0.5em 1em;
+  text-align: center;
+  text-transform: uppercase;
+  width: 80%;
+  max-width: 20rem;
+}
+
 .word {
   font-size: 1.2em;
   font-size: clamp(1.2em, 2vw, 2.5em);
   font-weight: bold;
-  margin: 1em 0 2em;
 }
 
 .word .letter {
@@ -176,9 +206,9 @@ body {
 
 .input-letter-grid .input-letter {
   cursor: pointer;
-  font-size: 2em;
-  font-size: clamp(2em, 3vw, 3em);
-  margin: 1.7%;
+  font-size: 1.9em;
+  font-size: clamp(1.9em, 3vw, 3em);
+  margin: 1.5%;
   position: relative;
   width: 10%;
 }
