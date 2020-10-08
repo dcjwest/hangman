@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
+import { randomWords } from './randomWords';
 
-const API_URL = 'https://random-word-api.herokuapp.com/word';
+const PROXY = 'https://cors-anywhere.herokuapp.com/';
+
+const API_URL = `${PROXY}https://random-word-api.herokuapp.com/word`;
 
 export default function useFetchWord(replayCheck, setReplay) {
     const [selectedWord, setSelectedWord] = useState('');
@@ -14,6 +17,9 @@ export default function useFetchWord(replayCheck, setReplay) {
                 setSelectedWord(data[0].toUpperCase());
             } catch (err) {
                 setError(err);
+
+                let randomIdx = Math.floor(Math.random() * randomWords.length);
+                setSelectedWord(randomWords[randomIdx].toUpperCase());
             }
         };
         if (replayCheck || replayCheck === undefined) {
