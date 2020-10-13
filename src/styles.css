@@ -99,7 +99,7 @@ body {
   .game-wrapper .word-wrapper {
     -ms-flex-item-align: end;
         align-self: flex-end;
-    margin: 0 2em 1em 0;
+    margin: 0.5em 2em 1em 0;
   }
 }
 
@@ -283,29 +283,30 @@ body {
 }
 
 .result-wrapper {
-  opacity: 0;
+  pointer-events: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  -webkit-transform: translateY(100%);
-          transform: translateY(100%);
-  -webkit-transition: 0.3s ease-in-out;
-  transition: 0.3s ease-in-out;
 }
 
-.result-wrapper.show {
-  opacity: 1;
-  -webkit-transform: translateY(0);
-          transform: translateY(0);
+.result-wrapper.active {
+  pointer-events: all;
 }
 
 .result-wrapper .overlay {
   background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0;
   position: absolute;
   width: 100%;
   height: 100%;
+  -webkit-transition: 0.3s linear;
+  transition: 0.3s linear;
+}
+
+.result-wrapper .overlay.show {
+  opacity: 1;
 }
 
 .result-wrapper .result {
@@ -315,27 +316,47 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  position: absolute;
+  opacity: 0;
   padding: 2em 1em;
+  position: absolute;
   text-align: center;
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+  -webkit-transition: opacity 0.3s linear, -webkit-transform 0.3s ease-in-out;
+  transition: opacity 0.3s linear, -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, opacity 0.3s linear;
+  transition: transform 0.3s ease-in-out, opacity 0.3s linear, -webkit-transform 0.3s ease-in-out;
+}
+
+.result-wrapper .result.show {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
 
 .result-wrapper .result button {
-  background-color: #02418c;
   border: none;
   border-radius: 100vmax;
   color: #fff;
   cursor: pointer;
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 1.1em;
   letter-spacing: 1px;
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
+  margin: 1em 0.5em 0;
+  padding: 0.4em 0.8em;
   -webkit-transition: 0.25s ease-in-out;
   transition: 0.25s ease-in-out;
 }
 
 .result-wrapper .result button:hover {
   opacity: 0.8;
+}
+
+.result-wrapper .result button.replay-btn {
+  background-color: #02418c;
+}
+
+.result-wrapper .result button.exit-btn {
+  background-color: #dc0508;
 }
 /*# sourceMappingURL=styles.css.map */

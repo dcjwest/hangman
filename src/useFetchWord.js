@@ -28,7 +28,8 @@ export default function useFetchWord(replayCheck, setReplay) {
         /* Get word using hard-coded strings from randomWords.js */
         const fetchWord = () => {
             let randomIdx = Math.floor(Math.random() * randomWords.length);
-            setSelectedWord(randomWords[randomIdx].toUpperCase());
+            let randomWord = randomWords[randomIdx].toUpperCase();
+            setSelectedWord(randomWord);
         };
 
         if (replayCheck || replayCheck === undefined) {
