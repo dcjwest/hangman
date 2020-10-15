@@ -167,22 +167,33 @@ body {
   padding: 0.5em 1.5em;
   text-align: center;
   text-transform: uppercase;
-  width: 100%;
   max-width: 20rem;
   min-width: 16rem;
 }
 
 .word {
-  font-size: 1.2em;
-  font-size: clamp(1.2em, 2vw, 2.5em);
-  font-weight: bold;
+  font-size: 16px;
+  padding: 0 1rem;
+}
+
+@media screen and (min-width: 400px) {
+  .word {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .word {
+    font-size: 22px;
+  }
 }
 
 .word .letter {
   color: #02418c;
   margin: 0 0.2em;
   position: relative;
-  min-width: 1.2em;
+  min-width: 1em;
+  width: 100%;
   min-height: 1.4em;
   text-align: center;
   -webkit-transition: 1s ease-in-out linear;
@@ -190,6 +201,9 @@ body {
 }
 
 .word .letter span {
+  font-size: 1em;
+  font-size: clamp(1em, 2.5vw, 2.5em);
+  font-weight: bold;
   opacity: 0;
   -webkit-transition: 1s ease-in-out linear;
   transition: 1s ease-in-out linear;
