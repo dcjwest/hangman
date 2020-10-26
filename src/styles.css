@@ -242,6 +242,11 @@ body {
   margin: 1.6%;
   position: relative;
   width: 10%;
+  min-width: 2rem;
+  -webkit-transition: color 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
 }
 
 .input-letter-grid .input-letter.wrong::after {
@@ -256,12 +261,19 @@ body {
 
 .input-letter-grid .input-letter.correct::after {
   content: '';
-  background: url("./assets/correct.png") center/contain no-repeat;
+  background: url("./assets/correct2.png") center/contain no-repeat;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.input-letter-grid .input-letter.highlight {
+  color: #fff;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  text-shadow: 0 0 2px #02418c, 0 0 4px #02418c, 0 0 6px #02418c, 0 0 8px #02418c !important;
 }
 
 .notification-wrapper {

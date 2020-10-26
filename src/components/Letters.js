@@ -5,6 +5,15 @@ const Letters = ({ wrongChars, correctChars, handleLetterClick }) => {
         String.fromCharCode(charNum + 65)
     );
 
+    const handleMouseOver = e => {
+        let classes = [...e.target.classList];
+        if (!classes.includes('wrong') && !classes.includes('correct')) {
+            e.target.classList.add('highlight');
+        }
+    }
+
+    const handleMouseLeave = e => e.target.classList.remove("highlight");
+
     return (
         <div className="input-letter-grid">
             {alphabet.map((char, i) => (
@@ -18,6 +27,8 @@ const Letters = ({ wrongChars, correctChars, handleLetterClick }) => {
                             : ''
                     }`}
                     onClick={e => handleLetterClick(e.target.innerHTML)}
+                    onMouseOver={handleMouseOver}
+                    onMouseLeave={handleMouseLeave}
                 >
                     {char}
                 </div>
