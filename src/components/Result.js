@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { checkWin } from '../helpers';
 
-const Result = ({ selectedWord, wrongChars, correctChars, chances, init }) => {
+const Result = ({ selectedWord, wrongChars, correctChars, chances, fadeOut }) => {
     let result = false;
     const [gameComplete, setGameComplete] = useState(false);
     const resultMsg = useRef("");
@@ -17,8 +17,8 @@ const Result = ({ selectedWord, wrongChars, correctChars, chances, init }) => {
     }
 
     const handleReplay = () => {
-        init();
         setGameComplete(false);
+        fadeOut();
     }
 
     const handleExit = () => setGameComplete(false);

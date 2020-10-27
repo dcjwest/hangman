@@ -18,11 +18,19 @@ const App = () => {
     const [showBlackScreen, setShowBlackScreen] = useState(false);
 
     const init = () => {
-        setShowBlackScreen(true);
         setCorrectChars([]);
         setWrongChars([]);
-        setPlayable(true);
     };
+
+    const fadeOut = () => setShowBlackScreen(true);
+
+    const fadeIn = () => {
+        if (showBlackScreen) {
+            init();
+            setPlayable(true);
+            setShowBlackScreen(false);
+        }
+    }
 
     const handleLetterClick = letter => {
         if (selectedWord.includes(letter)) {
@@ -69,7 +77,7 @@ const App = () => {
 
     return (
         <div className="App container">
-            <div onTransitionEnd={() => setShowBlackScreen(false)} className={`black-screen ${showBlackScreen? 'show' : ''}`}></div>
+            <div onTransitionEnd={fadeIn} className={`black-screen ${showBlackScreen? 'show' : ''}`}></div>
             <Header />
             <div className="game-wrapper flex-center">
                 <Figure wrongChars={wrongChars} />
@@ -94,7 +102,7 @@ const App = () => {
                     wrongChars={wrongChars}
                     correctChars={correctChars}
                     chances={6}
-                    init={init}
+                    fadeOut={fadeOut}
                 />
             )}
         </div>
