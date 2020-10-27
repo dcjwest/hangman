@@ -15,8 +15,10 @@ const App = () => {
     const [correctChars, setCorrectChars] = useState([]);
     const [wrongChars, setWrongChars] = useState([]);
     const [showNotification, setShowNotification] = useState(false);
+    const [showBlackScreen, setShowBlackScreen] = useState(false);
 
     const init = () => {
+        setShowBlackScreen(true);
         setCorrectChars([]);
         setWrongChars([]);
         setPlayable(true);
@@ -67,6 +69,7 @@ const App = () => {
 
     return (
         <div className="App container">
+            <div onTransitionEnd={() => setShowBlackScreen(false)} className={`black-screen ${showBlackScreen? 'show' : ''}`}></div>
             <Header />
             <div className="game-wrapper flex-center">
                 <Figure wrongChars={wrongChars} />
