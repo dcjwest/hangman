@@ -1,14 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { checkWin } from '../helpers';
+import Confetti from 'react-confetti';
+import { checkWin, useWindowSize } from '../helpers';
 
 const Result = ({ selectedWord, wrongChars, correctChars, chances, fadeOut }) => {
-    let result = false;
+    let result = false, gameWon = false;
+    const { width, height } = useWindowSize();
     const [gameComplete, setGameComplete] = useState(false);
     const resultMsg = useRef("");
 
     if (checkWin(selectedWord, correctChars, wrongChars, chances) === 'win') {
         resultMsg.current = "Congratulations! You've guessed the correct word!\n\n";
         result = true;
+        gameWon = true;
     } else if (
         checkWin(selectedWord, correctChars, wrongChars, chances) === 'lose'
     ) {
@@ -27,6 +30,7 @@ const Result = ({ selectedWord, wrongChars, correctChars, chances, fadeOut }) =>
 
     return (
         <div className={`result-wrapper flex-center ${gameComplete? 'active' : ''}`}>
+            { gameWon && <Confetti width={width} height={height} /> }
             <div className={`overlay ${gameComplete? 'show' : ''}`} onClick={handleExit}></div>
             <div className={`result flex-center ${gameComplete? 'show' : ''}`}>
                 <h3>{resultMsg.current}</h3>

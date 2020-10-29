@@ -28,7 +28,7 @@ const App = () => {
         if (showBlackScreen) {
             init();
             setPlayable(true);
-            setShowBlackScreen(false);
+            setTimeout(() => setShowBlackScreen(false), 250);
         }
     }
 
