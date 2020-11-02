@@ -35,8 +35,8 @@ const Result = ({ selectedWord, wrongChars, correctChars, chances, fadeOut }) =>
             <div className={`result flex-center ${gameComplete? 'show' : ''}`}>
                 <h3>{resultMsg.current}</h3>
                 <div className='flex-center'>
-                    <button className='replay-btn' onClick={handleReplay}>Play again</button>
-                    <button className='exit-btn' onClick={handleExit}>I'm done</button>
+                    <button className={`btn replay-btn ${gameComplete? 'show' : ''}`} onClick={handleReplay}>Play again</button>
+                    <button className={`btn exit-btn ${gameComplete? 'show' : ''}`} onClick={handleExit}>I'm done</button>
                 </div>
             </div>
         </div>
