@@ -9,13 +9,13 @@ const Result = ({ selectedWord, wrongChars, correctChars, chances, fadeOut }) =>
     const resultMsg = useRef("");
 
     if (checkWin(selectedWord, correctChars, wrongChars, chances) === 'win') {
-        resultMsg.current = "Congratulations! You've guessed the correct word!\n\n";
+        resultMsg.current = "You've guessed the correct word!";
         result = true;
         gameWon = true;
     } else if (
         checkWin(selectedWord, correctChars, wrongChars, chances) === 'lose'
     ) {
-        resultMsg.current = `Oh no... You've failed to guess the correct word.\nAnswer: ${selectedWord}\n\n`;
+        resultMsg.current = "You've failed to guess the correct word.";
         result = true;
     }
 
@@ -33,7 +33,9 @@ const Result = ({ selectedWord, wrongChars, correctChars, chances, fadeOut }) =>
             { gameWon && <Confetti width={width} height={height} /> }
             <div className={`overlay ${gameComplete? 'show' : ''}`} onClick={handleExit}></div>
             <div className={`result flex-center ${gameComplete? 'show' : ''}`}>
-                <h3>{resultMsg.current}</h3>
+                {gameWon? <h3 className='win-title'>Congratulations!</h3> : <h3 className='lose-title'>Oh no...</h3>}
+                <p className='msg'>{resultMsg.current}</p>
+                {!gameWon && <h4>Answer: {selectedWord}</h4>}
                 <div className='flex-center'>
                     <button className={`btn replay-btn ${gameComplete? 'show' : ''}`} onClick={handleReplay}>Play again</button>
                     <button className={`btn exit-btn ${gameComplete? 'show' : ''}`} onClick={handleExit}>I'm done</button>
