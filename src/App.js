@@ -16,6 +16,7 @@ const App = () => {
     const [wrongChars, setWrongChars] = useState([]);
     const [showNotification, setShowNotification] = useState(false);
     const [showBlackScreen, setShowBlackScreen] = useState(false);
+    const [endGame, setEndGame] = useState(false);
 
     const init = () => {
         setCorrectChars([]);
@@ -25,6 +26,7 @@ const App = () => {
     const fadeOut = () => setShowBlackScreen(true);
 
     const fadeIn = () => {
+        if (endGame) return;
         if (showBlackScreen) {
             init();
             setPlayable(true);
@@ -77,7 +79,9 @@ const App = () => {
 
     return (
         <div className="App container">
-            <div onTransitionEnd={fadeIn} className={`black-screen ${showBlackScreen? 'show' : ''}`}></div>
+            <div onTransitionEnd={fadeIn} className={`black-screen flex-center ${showBlackScreen? 'show' : ''}`}>
+                {endGame && <p className='postgame-msg'>Thanks for playing =)</p>}
+            </div>
             <Header />
             <div className="game-wrapper flex-center">
                 <Figure wrongChars={wrongChars} />
@@ -91,6 +95,7 @@ const App = () => {
                     <Letters
                         wrongChars={wrongChars}
                         correctChars={correctChars}
+                        chances={6}
                         handleLetterClick={handleLetterClick}
                     />
                 </div>
@@ -103,6 +108,7 @@ const App = () => {
                     correctChars={correctChars}
                     chances={6}
                     fadeOut={fadeOut}
+                    setEndGame={setEndGame}
                 />
             )}
         </div>

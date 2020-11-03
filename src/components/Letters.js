@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Letters = ({ wrongChars, correctChars, handleLetterClick }) => {
+const Letters = ({ wrongChars, correctChars, chances, handleLetterClick }) => {
     const alphabet = [...Array(26).keys()].map(charNum =>
         String.fromCharCode(charNum + 65)
     );
@@ -14,6 +14,11 @@ const Letters = ({ wrongChars, correctChars, handleLetterClick }) => {
 
     const handleMouseLeave = e => e.target.classList.remove("highlight");
 
+    const handleClick = e => {
+        if (wrongChars.length >= chances) return;
+        handleLetterClick(e.target.innerHTML);
+    }
+
     return (
         <div className="input-letter-grid">
             {alphabet.map((char, i) => (
@@ -26,7 +31,7 @@ const Letters = ({ wrongChars, correctChars, handleLetterClick }) => {
                             ? 'correct'
                             : ''
                     }`}
-                    onClick={e => handleLetterClick(e.target.innerHTML)}
+                    onClick={handleClick}
                     onMouseOver={handleMouseOver}
                     onMouseLeave={handleMouseLeave}
                 >

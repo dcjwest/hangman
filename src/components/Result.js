@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 import { checkWin, useWindowSize } from '../helpers';
 
-const Result = ({ selectedWord, wrongChars, correctChars, chances, fadeOut }) => {
+const Result = ({ selectedWord, wrongChars, correctChars, chances, fadeOut, setEndGame }) => {
     let result = false, gameWon = false;
     const { width, height } = useWindowSize();
     const [gameComplete, setGameComplete] = useState(false);
@@ -24,14 +24,18 @@ const Result = ({ selectedWord, wrongChars, correctChars, chances, fadeOut }) =>
         fadeOut();
     }
 
-    const handleExit = () => setGameComplete(false);
+    const handleExit = () => {
+        setGameComplete(false);
+        setEndGame(true);
+        fadeOut();
+    }
 
     useEffect(() => setGameComplete(result), [result]);
 
     return (
         <div className={`result-wrapper flex-center ${gameComplete? 'active' : ''}`}>
             { gameWon && <Confetti width={width} height={height} /> }
-            <div className={`overlay ${gameComplete? 'show' : ''}`} onClick={handleExit}></div>
+            <div className={`overlay ${gameComplete? 'show' : ''}`}></div>
             <div className={`result flex-center ${gameComplete? 'show' : ''}`}>
                 {gameWon? <h3 className='win-title'>Congratulations!</h3> : <h3 className='lose-title'>Oh no...</h3>}
                 <p className='msg'>{resultMsg.current}</p>

@@ -55,6 +55,16 @@ body {
 
 .black-screen.show {
   opacity: 1;
+  pointer-events: all;
+}
+
+.black-screen .postgame-msg {
+  color: #fff;
+  font-size: 4em;
+  letter-spacing: 2px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 90%;
 }
 
 .header-wrapper {
