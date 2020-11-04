@@ -83,7 +83,7 @@ body {
   text-transform: uppercase;
 }
 
-@media screen and (max-width: 768px) and (max-height: 576px) {
+@media screen and (orientation: landscape) and (max-height: 576px) {
   .header-wrapper {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -109,6 +109,9 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   height: 90vh;
   width: 100%;
 }
@@ -119,6 +122,8 @@ body {
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
     height: 100%;
     position: absolute;
     left: 0;
@@ -144,18 +149,19 @@ body {
 }
 
 .figure {
-  width: 75vmin;
-  max-width: 300px;
+  width: 100%;
 }
 
-@media screen and (min-width: 768px) and (orientation: landscape) {
+@media screen and (orientation: landscape) {
   .figure {
-    max-width: 500px;
+    max-width: 33vmax;
   }
 }
 
-.figure svg {
-  width: 100%;
+@media screen and (min-width: 768px) and (min-height: 577px) {
+  .figure {
+    max-width: 500px;
+  }
 }
 
 .figure svg path.hangman__part {
@@ -174,7 +180,13 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   width: 100%;
-  max-width: 35em;
+  max-width: 60vmax;
+}
+
+@media screen and (min-width: 768px) and (orientation: landscape) {
+  .letters-wrapper {
+    max-width: 35em;
+  }
 }
 
 .word-wrapper {
